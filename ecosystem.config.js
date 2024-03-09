@@ -1,10 +1,10 @@
 const { version } = require("./package.json");
 
-module.exports.ecosystem = {
+module.exports = {
   apps: [
     {
       name: `app-${version}`,
-      script: "index.js",
+      script: "./index.js",
       autorestart: true,
       watch: false,
       env: {
