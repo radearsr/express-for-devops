@@ -35,14 +35,16 @@ pipeline {
             steps {
                 script {
                     // Memastikan bahwa variabel nodeVersionsOutput telah diinisialisasi sebelum digunakan
-                    deployToSSH("Server Rabbit 01", "${nodeVersionsOutput}.tar", """
-                        mkdir -p ${nodeVersionsOutput}
-                        tar -xvf ${nodeVersionsOutput}.tar -C ${nodeVersionsOutput}
-                        rm ${nodeVersionsOutput}.tar
-                        mv ${nodeVersionsOutput}/* /var/www/html
-                        rm -rf ${nodeVersionsOutput}
-                    """)
-
+                    if (nodeVersionsOutput) {
+                        deployToSSH("Server Rabbit 01", "${nodeVersionsOutput}.tar", """
+                            mkdir -p ${nodeVersionsOutput}
+                            tar -xvf ${nodeVersionsOutput}.tar -C ${nodeVersionsOutput}
+                            rm ${nodeVersionsOutput}.tar
+                            mv ${nodeVersionsOutput} /var/www/NODE_PROD/
+                            """)
+                    } else {
+                        error "Variabel nodeVersionsOutput not initialized!"
+                    }
                 }
             }
         }
