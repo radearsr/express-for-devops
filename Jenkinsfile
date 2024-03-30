@@ -55,11 +55,11 @@ def deployToSSH(configName, sourceFiles, execCommand) {
             failOnError: true, // Gagal jika ada kesalahan
             publishers: [
                 sshPublisherDesc( // Deskripsi SSH Publisher
-                    configName: , // Nama konfigurasi SSH di Jenkins
+                    configName: configName, // Nama konfigurasi SSH di Jenkins
                     transfers: [
                         sshTransfer( // Transfer file menggunakan SSH
                             sourceFiles: sourceFiles, // Pola file yang akan ditransfer
-                            execCommand: execCommand, // Command yang akan dijalankan di server
+                            execCommand: execCommand // Command yang akan dijalankan di server
                         )
                     ]
                 )
