@@ -19,6 +19,7 @@ pipeline {
                 sh "npm -v"
                 sh "node -v"
                 def nodeVersionsOutput = sh(script: "node versions.js", returnStdout: true).trim()
+                echo "nodeVersionsOutput: ${nodeVersionsOutput}"
                 sh "npm install"
                 sh "tar -czf ${nodeVersionsOutput}.tar.gz *"
                 echo "BUILD SUCCESS LISTING FILES"
