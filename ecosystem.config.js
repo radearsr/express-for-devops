@@ -1,11 +1,10 @@
 const { version } = require("./package.json");
-
+const path = require("path");
 module.exports = {
   apps: [
     {
       name: `app-${version}`,
-      script: "./index.js",
-      autorestart: true,
+      script: path.join(__dirname, "index.js"),
       watch: false,
       env: {
         NODE_ENV: "production",
