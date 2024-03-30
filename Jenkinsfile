@@ -1,7 +1,8 @@
-def nodeVersionsOutput
-
 pipeline {
     agent any
+    
+    // Deklarasi variabel di dalam blok pipeline
+    def nodeVersionsOutput
 
     tools {
         nodejs "NodeJS 18.18.0" // Nama NodeJS yang sudah diinstal di Jenkins
@@ -21,6 +22,7 @@ pipeline {
                 sh "npm -v"
                 sh "node -v"
                 script {
+                    // Inisialisasi variabel
                     nodeVersionsOutput = sh(script: "node versions.js", returnStdout: true).trim()
                     sh "npm install"
                     sh "tar -cvf ${nodeVersionsOutput}.tar *"
@@ -32,9 +34,16 @@ pipeline {
 
         stage("Deploy") { // Deploy aplikasi ke server FTP
             steps {
-                deployToSSH("Server Rabbit 01", "**/*.tar", """
-                    tar -xvf ${nodeVersionsOutput}.tar
-                """)
+                script {
+                    // Memastikan bahwa variabel nodeVersionsOutput telah diinisialisasi sebelum digunakan
+                    if (nodeVersionsOutput) {
+                        deployToSSH("Server Rabbit 01", "${nodeVersionsOutput}.tar", """
+                            tar -xvf ${nodeVersionsOutput}.tar
+                        """)
+                    } else {
+                        error "Variabel nodeVersionsOutput not initialized!"
+                    }
+                }
             }
         }
     }
