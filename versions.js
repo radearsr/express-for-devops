@@ -1,3 +1,3 @@
 let { name, version } = require("./package.json");
 version = version.replace(/\./g, "-");
-console.log(`${name}-${version}`);
+console.log(`${name}-v${version}`);
