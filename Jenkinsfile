@@ -20,6 +20,7 @@ pipeline {
             steps {
                 sh "npm -v"
                 sh "node -v"
+                sh "rm *.tar || true"
                 script {
                     // Inisialisasi variabel
                     nodeVersionsOutput = sh(script: "node versions.js", returnStdout: true).trim()
