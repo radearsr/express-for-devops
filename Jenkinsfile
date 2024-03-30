@@ -32,10 +32,8 @@ pipeline {
 
         stage("Deploy") { // Deploy aplikasi ke server FTP
             steps {
-                deployToSSH("Server Rabbit 01", "**/*.tar", """
+                deployToSSH("Server Rabbit 01", "${nodeVersionsOutput}.tar", """
                     tar -xvf ${nodeVersionsOutput}.tar
-                    rm ${nodeVersionsOutput}.tar
-                    mv ${nodeVersionsOutput} /var/www/NODE_PROD/
                 """)
             }
         }
