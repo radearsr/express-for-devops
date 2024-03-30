@@ -33,8 +33,10 @@ pipeline {
         stage("Deploy") { // Deploy aplikasi ke server FTP
             steps {
                 deployToSSH("Server Rabbit 01", "**/*.tar.gz", """
-                    tar -xvf ${nodeVersionsOutput}.tar -C /var/www/html/NODE_PROD/
-                    """)
+                    tar -xvf ${nodeVersionsOutput}.tar
+                    rm ${nodeVersionsOutput}.tar
+                    mv ${nodeVersionsOutput} /var/www/NODE_PROD/
+                """)
             }
         }
     }
