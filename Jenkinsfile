@@ -1,3 +1,5 @@
+def nodeVersionsOutput
+
 pipeline {
     agent any
 
@@ -19,7 +21,7 @@ pipeline {
                 sh "npm -v"
                 sh "node -v"
                 script {
-                    def nodeVersionsOutput = sh(script: "node versions.js", returnStdout: true).trim()
+                    nodeVersionsOutput = sh(script: "node versions.js", returnStdout: true).trim()
                     sh "npm install"
                     sh "tar -czf ${nodeVersionsOutput}.tar.gz *"
                 }
