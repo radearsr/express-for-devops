@@ -37,7 +37,7 @@ pipeline {
                     // Memastikan bahwa variabel nodeVersionsOutput telah diinisialisasi sebelum digunakan
                     if (nodeVersionsOutput) {
                         deployToSSH("Server Rabbit 01", "${nodeVersionsOutput}.tar", """
-                            tar -xvf ${nodeVersionsOutput}.tar
+                            ls -al
                         """)
                     } else {
                         error "Variabel nodeVersionsOutput not initialized!"
