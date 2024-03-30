@@ -20,12 +20,12 @@ pipeline {
             steps {
                 sh "npm -v"
                 sh "node -v"
-                script {
-                    // Inisialisasi variabel
-                    nodeVersionsOutput = sh(script: "node versions.js", returnStdout: true).trim()
-                    sh "npm install"
-                    sh "tar -cvf ${nodeVersionsOutput}.tar *"
-                }
+                // script {
+                //     // Inisialisasi variabel
+                //     nodeVersionsOutput = sh(script: "node versions.js", returnStdout: true).trim()
+                //     sh "npm install"
+                //     sh "tar -cvf ${nodeVersionsOutput}.tar *"
+                // }
                 echo "BUILD SUCCESS LISTING FILES"
                 sh "ls -al"
             }
