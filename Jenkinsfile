@@ -41,7 +41,6 @@ pipeline {
                             tar -xvf ${nodeVersionsOutput}.tar -C ${nodeVersionsOutput}
                             rm ${nodeVersionsOutput}.tar
                             mv ${nodeVersionsOutput} /var/www/NODE_PROD/
-                            ./bash-scripts/manage-pm2.sh --filepath /var/www/NODE_PROD/${nodeVersionsOutput}/ecosystem.config.js --appname app
                             """)
                     } else {
                         error "Variabel nodeVersionsOutput not initialized!"
