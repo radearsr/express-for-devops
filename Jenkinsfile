@@ -1,8 +1,7 @@
+// Deklarasi variabel nodeVersionsOutput
+def nodeVersionsOutput
 pipeline {
     agent any
-    
-    // Deklarasi variabel di dalam blok pipeline
-    def nodeVersionsOutput
 
     tools {
         nodejs "NodeJS 18.18.0" // Nama NodeJS yang sudah diinstal di Jenkins
