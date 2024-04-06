@@ -1,9 +1,9 @@
 const express = require("express");
-
+const version = require("package.json").version;
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send(`<center><h1>App v${version}</h1></center>`);
 });
 
 app.listen(3000, () => {
